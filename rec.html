@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    
+}
+
+.column {
+    background-color: white;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.column h2 {
+    color: #000000; /* Cor do título */
+}
+
+.column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.column ul li {
+    margin-bottom: 10px;
+}
+
+/* Estilo personalizado para cada coluna */
+.column:nth-child(1) {
+    background-color: #ff6b6b; /* Cor de fundo da primeira coluna */
+}
+
+.column:nth-child(2) {
+    background-color: #7be3a1; /* Cor de fundo da segunda coluna */
+}
+
+.column:nth-child(3) {
+    background-color: #fdbc6d; /* Cor de fundo da terceira coluna */
+}
+
+.column:nth-child(4) {
+    background-color: #1114c7; /* Cor de fundo da terceira coluna */
+}
+
+.column:nth-child(5) {
+    background-color: #6e1010; /* Cor de fundo da terceira coluna */
+}
+
+.column:nth-child(6) {
+    background-color: #19b16a; /* Cor de fundo da terceira coluna */
+}
+
+
+///////////////////////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sorteio de Letras Animado</title>
+  <style>
+    /* Estilo para a animação */
+    @keyframes aparecerDesaparecer {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Estilo para a div que contém a letra */
+    .letra-container {
+      font-size: 48px;
+      text-align: center;
+      animation: aparecerDesaparecer 3s infinite; /* 3 segundos de duração, repetição infinita */
+    }
+  </style>
+</head>
+<body>
+  <h1>Sorteio de Letras Animado</h1>
+  <div class="letra-container" id="letraSorteada"></div>
+
+  <script>
+    // Função para gerar uma letra aleatória
+    function sortearLetra() {
+      const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Alfabeto em maiúsculas
+      const indiceAleatorio = Math.floor(Math.random() * alfabeto.length);
+      return alfabeto.charAt(indiceAleatorio);
+    }
+
+    // Captura o elemento HTML onde exibiremos a letra sorteada
+    const elementoLetraSorteada = document.getElementById("letraSorteada");
+
+    // Função para atualizar a letra sorteada e reiniciar a animação
+    function atualizarLetraSorteada() {
+      const letraSorteada = sortearLetra();
+      elementoLetraSorteada.textContent = letraSorteada;
+      elementoLetraSorteada.style.animation = 'none'; // Pára a animação
+      void elementoLetraSorteada.offsetWidth; // Reinicia o layout
+      elementoLetraSorteada.style.animation = 'aparecerDesaparecer 3s infinite'; // Reinicia a animação
+    }
+
+    // Atualiza a letra sorteada inicialmente
+    atualizarLetraSorteada();
+
+    // Atualiza a letra sorteada a cada 5 segundos (ou conforme desejado)
+    setInterval(atualizarLetraSorteada, 5000); // 5000 milissegundos = 5 segundos
+  </script>
+</body>
+</html>
